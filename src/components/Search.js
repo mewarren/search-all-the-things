@@ -5,7 +5,8 @@ import styles from './search.css';
 export default class Search extends Component {
  
   static propTypes = {
-    onSearch: PropTypes.func.isRequired
+    onSearch: PropTypes.func.isRequired,
+
   };
 
   state = {
@@ -16,6 +17,7 @@ export default class Search extends Component {
     event.preventDefault();
     const { search } = this.state;
     if(!search.trim()) return;
+    console.log('search is:', search );
     this.props.onSearch(search);
   };
 
@@ -30,9 +32,9 @@ export default class Search extends Component {
       <form className={styles.search} onSubmit={this.handleSubmit}>
         <label>
           Search For Movies:
-          <input value={search} onChange={this.onChange}/>
+          <input value={search} onChange={this.handleChange}/>
         </label>
-        <button>Search</button>
+        <button >Search</button>
       </form>
     );
   }
