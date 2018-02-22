@@ -6,14 +6,27 @@ export default class App extends Component {
   constructor(){
     super();
 
-    this.state = {};
+    this.state = {
+      result: null,
+      total: 0,
+      query: null,
+      page: 1,
+      loading: false
+    };
 
   }
   
   render() {
 
     return (
-     <h1>Hello React World!</h1>
+      <div>
+        <main>
+          <div>Search goes here</div>
+          <div>Search Summary</div>
+          <div>Paging goes here</div>
+          <div>List goes here</div>
+        </main>
+      </div>
     );
   }
 }
