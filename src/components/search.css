@@ -1,6 +1,6 @@
 
 :local(.search) {
-  border: 1px solid #aaa;
-  background: #eee;
-  padding: 10px;
+  /* border: 1px solid rgb(26, 26, 26); */
+  background: rgb(20,20,20);
+  padding: 20px;
 }

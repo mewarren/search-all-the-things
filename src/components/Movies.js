@@ -1,25 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-export default class Movies extends Component {
+import Movie from './Movie';
 
-  static propTypes = {
-    movies: PropTypes.object.isRequired,
-  }  
+export default class Movies extends Component{
 
   render(){
-    const { title, year, poster } = this.props.movies;
-    return(
-      <div>
-        <ul>
-          <li>
-            
-          </li>
-        </ul>
-      </div>
-
-    );
-
+    
   }
-
 }

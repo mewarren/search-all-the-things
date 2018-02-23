@@ -3,6 +3,8 @@ html {height: 100%;}
 body {
   min-height: 100%;
   max-width: 100vw;
+  background: rgb(35,35,35);
+  color: rgb(250,250,250);
 }
     
 img {

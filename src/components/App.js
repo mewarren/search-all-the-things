@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './app.css';
 import Search from './Search';
 import  { searchApi } from '../services/movieApi';
+import Movies from './Movies';
 
 export default class App extends Component {
 
@@ -40,16 +41,22 @@ export default class App extends Component {
   };
   
   render() {
-    const { query, total } = this.state;
+    const { query, total, movies } = this.state;
     return (
       <div>
         <main>
-          <header>This is the header</header>
+          <header>
+            <h1>Movie Search</h1>
+          </header>
           <Search onSearch={this.handleSearch}/>
 
           <div>Your search for {query} returned {total} results.</div>
           <div>Paging goes here</div>
-          <div>List goes here</div>
+          {/* {movies && (
+            <div>
+              <Movies movies={movies}/>
+            </div>
+          )} */}
         </main>
       </div>
     );
