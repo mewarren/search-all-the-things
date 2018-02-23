@@ -1,3 +1,9 @@
-const API_KEY = '2cc2e403';
-const URL = 'http://www.omdbapi.com/?',
+const API_KEY = 'apikey=2cc2e403&';
+const URL = 'http://www.omdbapi.com/?';
 
+const get = url => fetch(url)
+  .then(res => res.json());
+
+export function searchApi(search){
+  return get(`${URL}${API_KEY}s=${search}`);
+}

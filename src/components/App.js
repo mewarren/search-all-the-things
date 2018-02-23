@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './app.css';
 import Search from './Search';
+import  { searchApi } from '../services/movieApi';
 
 export default class App extends Component {
 
@@ -23,7 +24,8 @@ export default class App extends Component {
   }
   
   searchMovies = () => {
-    console.log(this.state.query);
+    searchApi(this.state.query)
+      .then(results => this.setState({ result: results.Search }));
   };
     
   handleSearch = (value) => {
