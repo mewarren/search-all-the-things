@@ -9,14 +9,15 @@ export default class App extends Component {
   constructor(){
     super();
 
-    // this.handleSearch = this.handleSearch.bind(this);
     this.searchMovies = this.searchMovies.bind(this);
 
-    
-    
-
     this.state = {
-      movies: null,
+      movies: [{
+        Poster: "https://images-na.ssl-images-amazon.com/images/M/MV5BMTg5NzY0MzA2MV5BMl5BanBnXkFtZTYwNDc3NTc2._V1_SX300.jpg",
+        Title: "Cars",
+        Year: "2006",
+        imdbID: "tt0317219"
+      }],
       total: 0,
       query: null,
       page: 1,
@@ -52,11 +53,9 @@ export default class App extends Component {
 
           <div>Your search for {query} returned {total} results.</div>
           <div>Paging goes here</div>
-          {/* {movies && (
-            <div>
-              <Movies movies={movies}/>
-            </div>
-          )} */}
+          <div>
+            <Movies movies={movies}/>
+          </div>
         </main>
       </div>
     );

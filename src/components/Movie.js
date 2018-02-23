@@ -1,29 +1,26 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-// import styles from './movies.css';
+import './movie.css';
 
 export default class Movies extends Component {
 
   static propTypes = {
-    movies: PropTypes.object.isRequired,
+    movie: PropTypes.object.isRequired,
   };  
 
   render(){
-    const { title, year, poster } = this.props.movies;
+    const { Title, Year, Poster } = this.props.movie;
     
     return (
-      <div>
-        <ul>
-          <li>
-            <h2>{title}</h2>
-            <h3>{year}</h3>
-            <img src={poster}/>
-          </li>
-        </ul>
+      <div>        
+        <li className="movie">
+          <img src={Poster}/>
+          <div className="movie-detail">
+            <h2>{Title}</h2>
+            <h3>{Year}</h3>
+          </div>
+        </li>       
       </div>
-
     );
-
   }
-
 }
