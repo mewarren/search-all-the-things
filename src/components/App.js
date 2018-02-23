@@ -15,7 +15,7 @@ export default class App extends Component {
     
 
     this.state = {
-      result: null,
+      movies: null,
       total: 0,
       query: null,
       page: 1,
@@ -25,7 +25,11 @@ export default class App extends Component {
   
   searchMovies = () => {
     searchApi(this.state.query)
-      .then(results => this.setState({ result: results.Search }));
+      .then(results => this.setState(
+        { movies: results.Search, 
+          total: results.Search.length 
+        })
+      );
   };
     
   handleSearch = (value) => {
@@ -36,15 +40,14 @@ export default class App extends Component {
   };
   
   render() {
-
+    const { query, total } = this.state;
     return (
       <div>
         <main>
           <header>This is the header</header>
           <Search onSearch={this.handleSearch}/>
-          <p>{ this.state.query }</p>
 
-          <div>Search Summary</div>
+          <div>Your search for {query} returned {total} results.</div>
           <div>Paging goes here</div>
           <div>List goes here</div>
         </main>
