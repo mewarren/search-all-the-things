@@ -33,7 +33,7 @@ export default class Search extends Component {
           Search For Movies:
           <input value={search} onChange={this.handleChange}/>
         </label>
-        <button >Search</button>
+        <button className="search-b">Search</button>
       </form>
     );
   }
