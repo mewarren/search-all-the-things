@@ -5,33 +5,39 @@ import './paging.css';
 export default class Paging extends Component {
 
   static propTypes ={
-    resultTotal: PropTypes.string.isRequired,
+    resultTotal: PropTypes.number.isRequired,
+    // page: PropTypes.number.isRequired,
+    newPage: PropTypes.func.isRequired,
   };
 
-  // state = {
-  //   resultTotal: 'string'
-  // };
+  state = {
+    page: 1
+  };
 
-  // pageCount = ({ this.props.resultTotal }) => {
-
-  // }
-
+  setArray(array) {
+    let pageArray = [];
+    for(let i = 0; i < array.length; i ++){
+      pageArray.push(i + 1);
+    }
+    return pageArray;
+  }
+  
+  handlePage = async({ target }) => {
+    await this.setState({ page: target.id });
+    await this.props.newPage(this.state.page);
+  };
+  
   render() {
-    let pages = this.props;
-    console.log('Total results:', pages);
-    const { resultTotal } = Math.ceil(parseInt(pages));
-    console.log('Total pages:', { resultTotal });
-
+    const { resultTotal } = this.props;
+    const totalPages = new Array(Math.ceil(resultTotal / 10));
+    const pageArray = this.setArray(totalPages);
+  
     return (
       <div>
-        <p>prev</p>
-        <p>{resultTotal}</p>
-        <p>next</p>
+        <ul className="pages">Page {pageArray.map(i => (
+          <li onClick={this.handlePage} key={i} id={i}>{i}</li>
+        ))}</ul>
       </div>
     );
   }
 }
-
-//TODO: Create paging by mapping totalResults and create <p> for each with page number</p>
-
-//TODO: event listener to search api for page number thats clicked.

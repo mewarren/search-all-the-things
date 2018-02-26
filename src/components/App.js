@@ -15,7 +15,7 @@ export default class App extends Component {
     this.state = {
       movies: [],
       pageTotal: 0,
-      resultTotal:0,
+      resultTotal: 0,
       query: null,
       page: 1,
       loading: false,
@@ -24,16 +24,16 @@ export default class App extends Component {
   }
   
   searchMovies = () => {
-    this.setState( { loading: true, error: null });
-
-    searchApi(this.state.query)
+    this.setState({ loading: true, error: null });
+    const { query, page } = this.state;
+    searchApi(query, page)
       .then(results => {
         console.log(results);
-        
+        const totalResults = parseInt(results.totalResults);
         this.setState(
           { movies: results.Search, 
             pageTotal: results.Search.length,
-            resultTotal: results.totalResults,
+            resultTotal: totalResults
           });
       },
       error => this.setState({ error }))
@@ -41,14 +41,19 @@ export default class App extends Component {
         this.setState({ loading: false });
       });
   };
-    
+
+  newPage = (value) => {
+    this.setState({ page: (parseInt(value)) }),
+    this.searchMovies();  
+  };
+
   handleSearch = (value) => {
     this.setState(
       { query: value }, 
       this.searchMovies,  
     );
   };
-  
+    
   render() {
     const { query, pageTotal, resultTotal, movies, loading } = this.state;
     return (
@@ -59,8 +64,8 @@ export default class App extends Component {
           </header>
           <Search onSearch={this.handleSearch}/>
           <div>{loading && 'Loading...'}</div>
-          {/* <div>Here are the results of your search for {query}. Showing {pageTotal} of {resultTotal} results.</div> */}
-          <Paging resultTotal={resultTotal}/>
+          <div>Here are the results of your search for &quot;{query}&quot;. Showing {pageTotal} of {resultTotal} results.</div>
+          <Paging resultTotal={resultTotal} newPage={this.newPage}/>
           <div>
             <Movies movies={movies}/>
           </div>

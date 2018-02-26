@@ -1,0 +1,20 @@
+.pages {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  list-style: none;
+  width: 90%;
+  margin: 20px auto;
+
+  li {
+    width: 15px;
+    text-align: center;
+  }
+
+  li:hover { 
+    background: rgb(255,213,111);
+    color: rgb(40,40,40);
+
+  }
+
+}
