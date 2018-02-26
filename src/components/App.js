@@ -18,19 +18,27 @@ export default class App extends Component {
       resultTotal:0,
       query: null,
       page: 1,
-      loading: false
+      loading: false,
+      error: null
     };
   }
   
   searchMovies = () => {
+    this.setState( { loading: true, error: null });
+
     searchApi(this.state.query)
       .then(results => {
         console.log(results);
+        
         this.setState(
           { movies: results.Search, 
             pageTotal: results.Search.length,
-            resultTotal: results.totalResults
+            resultTotal: results.totalResults,
           });
+      },
+      error => this.setState({ error }))
+      .then(() => {
+        this.setState({ loading: false });
       });
   };
     
@@ -42,7 +50,7 @@ export default class App extends Component {
   };
   
   render() {
-    const { query, pageTotal, resultTotal, movies } = this.state;
+    const { query, pageTotal, resultTotal, movies, loading } = this.state;
     return (
       <div>
         <main>
@@ -50,9 +58,9 @@ export default class App extends Component {
             <h1>Movie Search</h1>
           </header>
           <Search onSearch={this.handleSearch}/>
-
+          <div>{loading && 'Loading...'}</div>
           <div>Here are the results of your search for {query}. Showing {pageTotal} of {resultTotal} results.</div>
-          <Paging/>
+          <Paging resultTotal={resultTotal}/>
           <div>
             <Movies movies={movies}/>
           </div>
