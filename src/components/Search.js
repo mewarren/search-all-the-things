@@ -10,7 +10,8 @@ export default class Search extends Component {
   };
 
   state = {
-    search: ''
+    search: '',
+    list: ''
   };
 
   handleSubmit = (event) => {
@@ -18,17 +19,22 @@ export default class Search extends Component {
     const { search } = this.state;
     if(!search.trim()) return;
     this.props.onSearch(search);
+    this.collaspeSearch();
   };
 
   handleChange = ({ target }) => {
     this.setState({ search: target.value });
   };
 
-  render() {
-    const { search } = this.state;
+  collaspeSearch = () => {
+    this.setState({ list: 'searchv' });
+  };
 
+  render() {
+    const { search, list } = this.state;
+    // if({list}) setState
     return (
-      <form className={styles.search} onSubmit={this.handleSubmit}>
+      <form className={styles.search} id={list} onSubmit={this.handleSubmit}>
         <label>
           Search For Movies:
           <input value={search} onChange={this.handleChange}/>

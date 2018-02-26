@@ -45,7 +45,7 @@ export default class App extends Component {
   handleSearch = (value) => {
     this.setState(
       { query: value }, 
-      this.searchMovies  
+      this.searchMovies,  
     );
   };
   
@@ -59,7 +59,7 @@ export default class App extends Component {
           </header>
           <Search onSearch={this.handleSearch}/>
           <div>{loading && 'Loading...'}</div>
-          <div>Here are the results of your search for {query}. Showing {pageTotal} of {resultTotal} results.</div>
+          {/* <div>Here are the results of your search for {query}. Showing {pageTotal} of {resultTotal} results.</div> */}
           <Paging resultTotal={resultTotal}/>
           <div>
             <Movies movies={movies}/>
