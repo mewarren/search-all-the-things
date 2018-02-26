@@ -3,6 +3,7 @@ import './app.css';
 import Search from './Search';
 import  { searchApi } from '../services/movieApi';
 import Movies from './Movies';
+import Paging from './Paging';
 
 export default class App extends Component {
 
@@ -51,7 +52,7 @@ export default class App extends Component {
           <Search onSearch={this.handleSearch}/>
 
           <div>Here are the results of your search for {query}. Showing {pageTotal} of {resultTotal} results.</div>
-          <div>Paging goes here</div>
+          <Paging/>
           <div>
             <Movies movies={movies}/>
           </div>
