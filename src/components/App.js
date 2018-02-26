@@ -43,7 +43,7 @@ export default class App extends Component {
   };
 
   newPage = (value) => {
-    this.setState({ page: (parseInt(value)) }),
+    this.setState({ page: value }),
     this.searchMovies();  
   };
 
@@ -55,7 +55,7 @@ export default class App extends Component {
   };
     
   render() {
-    const { query, pageTotal, resultTotal, movies, loading } = this.state;
+    const { query, pageTotal, resultTotal, movies, loading, page } = this.state;
     return (
       <div>
         <main>
@@ -65,7 +65,7 @@ export default class App extends Component {
           <Search onSearch={this.handleSearch}/>
           <div>{loading && 'Loading...'}</div>
           <div>Here are the results of your search for &quot;{query}&quot;. Showing {pageTotal} of {resultTotal} results.</div>
-          <Paging resultTotal={resultTotal} newPage={this.newPage}/>
+          <Paging resultTotal={resultTotal} newPage={this.newPage} page={page}/>
           <div>
             <Movies movies={movies}/>
           </div>

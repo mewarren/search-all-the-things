@@ -6,12 +6,8 @@ export default class Paging extends Component {
 
   static propTypes ={
     resultTotal: PropTypes.number.isRequired,
-    // page: PropTypes.number.isRequired,
+    page: PropTypes.number.isRequired,
     newPage: PropTypes.func.isRequired,
-  };
-
-  state = {
-    page: 1
   };
 
   setArray(array) {
@@ -21,21 +17,21 @@ export default class Paging extends Component {
     }
     return pageArray;
   }
-  
-  handlePage = async({ target }) => {
-    await this.setState({ page: target.id });
-    await this.props.newPage(this.state.page);
+
+  handlePage = ({ target }) => {
+    const page = parseInt(target.id);
+    this.props.newPage(page);
   };
   
   render() {
-    const { resultTotal } = this.props;
+    const { resultTotal, page } = this.props;
     const totalPages = new Array(Math.ceil(resultTotal / 10));
     const pageArray = this.setArray(totalPages);
   
     return (
       <div>
         <ul className="pages">Page {pageArray.map(i => (
-          <li onClick={this.handlePage} key={i} id={i}>{i}</li>
+          <li className={(page === i) ? 'pageCur' : null}onClick={this.handlePage} key={i} id={i}>{i}</li>
         ))}</ul>
       </div>
     );
