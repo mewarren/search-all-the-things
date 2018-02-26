@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import './app.css';
 import Search from './Search';
 import  { searchApi } from '../services/movieApi';
-import Movies from './Movies';
+import Movies from './movies/Movies';
 import Paging from './Paging';
+import Detail from './movies/movie/Detail';
 
 export default class App extends Component {
 
@@ -68,6 +69,9 @@ export default class App extends Component {
           <Paging resultTotal={resultTotal} newPage={this.newPage} page={page}/>
           <div>
             <Movies movies={movies}/>
+          </div>
+          <div>
+            <Detail/>
           </div>
         </main>
       </div>
