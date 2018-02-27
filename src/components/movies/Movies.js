@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import Movie from './Movie';
+import Movie from './movie/Movie';
 
 export default class Movies extends Component{
 
