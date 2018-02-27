@@ -50,7 +50,7 @@ export default class App extends Component {
 
   handleSearch = (value) => {
     this.setState(
-      { query: value }, 
+      { page: 1, query: value }, 
       this.searchMovies,  
     );
   };
