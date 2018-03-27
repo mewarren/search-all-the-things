@@ -7,15 +7,16 @@ export default class Movies extends Component{
 
   static propTypes = {
     movies: PropTypes.array.isRequired,
+    loadDetails: PropTypes.func.isRequired
   }; 
 
   render(){
-    const { movies } = this.props;
+    const { movies, loadDetails } = this.props;
 
     return (
       <ul>
         {movies.map((movie, i) => (
-          <Movie key={i} movie={movie}/>
+          <Movie key={i} movie={movie} loadDetails={loadDetails}/>
         ))}
       </ul>
     );

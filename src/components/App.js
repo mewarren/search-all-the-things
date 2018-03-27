@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './app.css';
 import Search from './Search';
-import  { searchApi } from '../services/movieApi';
+import  { searchApi, searchDetail } from '../services/movieApi';
 import Movies from './movies/Movies';
 import Paging from './Paging';
 import Detail from './movies/movie/Detail';
@@ -12,6 +12,7 @@ export default class App extends Component {
     super();
 
     this.searchMovies = this.searchMovies.bind(this);
+    this.loadDetails = this.loadDetails.bind(this);
 
     this.state = {
       movies: [],
@@ -29,7 +30,6 @@ export default class App extends Component {
     const { query, page } = this.state;
     searchApi(query, page)
       .then(results => {
-        console.log(results);
         const totalResults = parseInt(results.totalResults);
         this.setState(
           { movies: results.Search, 
@@ -43,15 +43,24 @@ export default class App extends Component {
       });
   };
 
+  loadDetails = (id) => {
+    const movie = this.state.movies;
+    searchDetail(id)
+      .then(results => {
+        console.log(results);
+      });
+  };
+
   newPage = (value) => {
-    this.setState({ page: value }),
-    this.searchMovies();  
+    this.setState({ page: value },
+      this.searchMovies  
+    );
   };
 
   handleSearch = (value) => {
     this.setState(
       { page: 1, query: value }, 
-      this.searchMovies,  
+      this.searchMovies  
     );
   };
     
@@ -68,7 +77,7 @@ export default class App extends Component {
           <div>Here are the results of your search for &quot;{query}&quot;. Showing {pageTotal} of {resultTotal} results.</div>
           <Paging resultTotal={resultTotal} newPage={this.newPage} page={page}/>
           <div>
-            <Movies movies={movies}/>
+            <Movies movies={movies} loadDetails={this.loadDetails}/>
           </div>
           <div>
             <Detail/>

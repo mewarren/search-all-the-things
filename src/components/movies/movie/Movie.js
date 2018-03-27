@@ -6,17 +6,26 @@ export default class Movies extends Component {
 
   static propTypes = {
     movie: PropTypes.object.isRequired,
+    loadDetails: PropTypes.func.isRequired
   };  
 
+  showDetail = ({ target }) => {
+    this.props.loadDetails(target.id);
+  };
+
   render(){
-    const { Title, Year, Poster } = this.props.movie;
-    
+    const { Title, Year, Poster, imdbID } = this.props.movie;
+    // let poster = { Poster };
+    // if(poster === 'N/A') {
+    //   return poster = './no-image.jpg';
+    // }
+    // console.log(poster);
     return (
       <div>        
         <li className="movie">
           <img src={Poster}/>
           <div className="movie-detail">
-            <h2>{Title}</h2>
+            <h2 id={imdbID} onClick={this.showDetail}>{Title}</h2>
             <h3>{Year}</h3>
           </div>
         </li>       
@@ -24,3 +33,5 @@ export default class Movies extends Component {
     );
   }
 }
+
+//TODO add click event to navigate to detail page

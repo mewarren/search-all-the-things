@@ -31,7 +31,7 @@ export default class Paging extends Component {
     return (
       <div>
         <ul className="pages">Page {pageArray.map(i => (
-          <li className={(page === i) ? 'pageCur' : null}onClick={this.handlePage} key={i} id={i}>{i}</li>
+          <li className={(page === i) ? 'pageCur' : null} onClick={this.handlePage} key={i} id={i}>{i}</li>
         ))}</ul>
       </div>
     );

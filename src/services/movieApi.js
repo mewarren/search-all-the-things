@@ -8,6 +8,11 @@ export function searchApi(search, page){
   return get(`${URL}${API_KEY}s=${search}&type=movie&page=${page}`);
 }
 
+export function searchDetail(id){
+  return get(`${URL}${API_KEY}i=${id}&plot=full`);
+}
+
+
 
 // get(`${URL}${API_KEY}s=${search}&type=movie&page=${i}`).then
 
